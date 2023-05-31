@@ -47,7 +47,7 @@ setup(
     author_email="geiger.fabian@outlook.com",
     url="https://github.com/fabge/crispy-daisyui",
     license="MIT",
-    packages=find_packages(exclude=["docs"]),
+    packages=find_packages(),
     include_package_data=True,
     python_requires=">=3.7",
     install_requires=["django-crispy-forms>=1.11.2", "django>=3.2"],
