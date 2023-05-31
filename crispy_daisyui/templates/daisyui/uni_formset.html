@@ -1,0 +1,8 @@
+{% with formset.management_form as form %}
+    {% include 'daisyui/uni_form.html' %}
+{% endwith %}
+{% for form in formset %}
+    <div class="multiField">
+        {% include 'daisyui/uni_form.html' %}
+    </div>
+{% endfor %}

@@ -1,0 +1,10 @@
+{% load crispy_forms_filters %}
+{% load l10n %}
+
+<select class="select select-bordered w-full focus:ring focus:outline-none {% if field.errors %}select-error {% endif %}" name="{{ field.html_name }}" {{ field.field.widget.attrs|flatatt }}>
+    {% for value, label in field.field.choices %}
+        <option value="{{ value|stringformat:'s' }}" {{ field.field.widget.attrs|flatatt }}{% if field.value|stringformat:'s' == value|stringformat:'s' %} selected{% endif %}>{{ label }}</option>
+        {% include "daisyui/layout/select_option.html" with value=value label=label %}
+    {% endfor %}
+</select>
+</div>

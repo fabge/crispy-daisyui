@@ -1,0 +1,15 @@
+{% load crispy_forms_filters %}
+{% load l10n %}
+
+{% for choice in field.field.choices %}
+    <div class="form-control">
+        <label for="id_{{ field.html_name }}_{{ forloop.counter }}" class="label cursor-pointer">
+            <input type="radio" class="radio"{% if choice.0|stringformat:"s" == field.value|default_if_none:""|stringformat:"s" %} checked="checked"{% endif %} name="{{ field.html_name }}" id="id_{{ field.html_name }}_{{ forloop.counter }}" value="{{ choice.0|unlocalize }}" {{ field.field.widget.attrs|flatatt }}>
+            <span class="label-text">{{ choice.1|unlocalize }}</span>
+        </label>
+        {% if field.errors and forloop.last %}
+            {# include 'daisyui/layout/field_errors_block.html'  <-- bs4 template adds this here. Currently this pack adds it in field.html #}
+        {% endif %}
+{% endfor %}
+
+</div>
