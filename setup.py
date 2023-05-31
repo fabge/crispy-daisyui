@@ -23,7 +23,7 @@ setup(
     name="crispy-daisyui",
     version=crispy_daisyui.__version__,
     description="A DaisyUI package for Django Crispy Forms",
-    long_description=open("README.md").read(),
+    long_description=open("README.rst").read(),
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Environment :: Web Environment",
