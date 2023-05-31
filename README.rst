@@ -56,5 +56,6 @@ We can also use the ``{% crispy %}`` tag to allow usage of crispy-forms'
 2. Add ``FormHelper`` to your form and use crispy-forms to set-up your form
 3. Use the crispy tag ``{% crispy form %}`` in your template
 
+.. _daisyUI: https://daisyui.com
 .. _crispy-tailwind: https://github.com/django-crispy-forms/crispy-tailwind
 .. _django-crispy-forms: https://github.com/django-crispy-forms/django-crispy-forms
