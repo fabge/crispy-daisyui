@@ -4,7 +4,7 @@ crispy-daisyui
 
 A `daisyUI`_ template pack for the wonderful django-crispy-forms_.
 
-This repository is a fork of `crispy-daisyui`_ and has been modified just enough to suit my needs.
+This repository is a fork of `crispy-tailwind`_ and has been modified just enough to suit my needs.
 It works well for the most common forms elements.
 
 **WARNING**
