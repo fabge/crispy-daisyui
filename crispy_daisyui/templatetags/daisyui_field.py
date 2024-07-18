@@ -93,7 +93,7 @@ class CrispyDaisyUiFieldNode(template.Node):
         "multiplehidden": "",
         "file": "file-input file-input-bordered w-full focus:ring focus:outline-none",
         "clearablefile": "file-input file-input-bordered w-full focus:ring focus:outline-none",
-        "textarea": base_input,
+        "textarea": "textarea textarea-bordered w-full focus:ring focus:outline-none",
         "date": base_input,
         "datetime": base_input,
         "time": base_input,
