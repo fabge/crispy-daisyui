@@ -1,7 +1,10 @@
 {% load crispy_forms_filters %}
 {% load l10n %}
 
-<select class="select select-bordered w-full focus:ring focus:outline-none{% if field.errors %} select-error {% endif %}" name="{{ field.html_name }}" {{ field.field.widget.attrs|flatatt }}>
+<select class="select select-bordered w-full focus:ring focus:outline-none{% if field.errors %} select-error {% endif %}" 
+    name="{{ field.html_name }}" 
+    id="{% if input.id %}{{ input.id }}{% else %}{{ input.input_type }}-id-{{ input.name|slugify }}{% endif %}"
+    {{ field.field.widget.attrs|flatatt }}>
     {% for value, label in field.field.choices %}
         {% include "daisyui/layout/select_option.html" with value=value label=label %}
     {% endfor %}
