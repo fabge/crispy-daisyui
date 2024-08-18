@@ -1,7 +1,6 @@
 {% load crispy_forms_filters %}
 {% load l10n %}
 
-
 {% for choice in field.field.choices %}
     <div class="form-control">
         <label class="label cursor-pointer" for="id_{{ field.html_name }}_{{ forloop.counter }}">
@@ -13,4 +12,3 @@
         {% endif %}
     </div>
 {% endfor %}
-</div>
