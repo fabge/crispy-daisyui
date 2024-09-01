@@ -18,6 +18,9 @@ register = template.Library()
 def is_checkbox(field):
     return isinstance(field.field.widget, forms.CheckboxInput)
 
+@register.filter
+def is_toggle(field):
+    return isinstance(field.field.widget, forms.CheckboxInput) and 'toggle' in field.field.widget.attrs.get('class', '')
 
 @register.filter
 def is_password(field):
@@ -97,16 +100,17 @@ class CrispyDaisyUiFieldNode(template.Node):
         "date": base_input,
         "datetime": base_input,
         "time": base_input,
-        "checkbox": "",
+        "checkbox": "checkbox",
         "select": "select select-bordered w-full",
         "nullbooleanselect": "",
         "selectmultiple": "",
-        "checkboxselectmultiple": "",
+        "checkboxselectmultiple": "checkbox",
         "multi": "",
         "splitdatetime": base_input,
         "splithiddendatetime": "",
         "selectdate": "",
         "error_border": "border-red-500",
+        "toggle": "toggle",
     }
 
     default_container = CSSContainer(default_styles)

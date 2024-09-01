@@ -1,0 +1,10 @@
+{% load crispy_forms_filters %}
+{% load l10n %}
+
+<div class="form-control">
+  <label class="label cursor-pointer" for="{{ field.id_for_label }}">
+    <span class="label-text">{{ field.label }}</span>
+    <input type="checkbox" class="toggle" name="{{ field.html_name }}" id="{{ field.id_for_label }}"
+           {% if field.value %}checked="checked"{% endif %} {{ field.field.widget.attrs|flatatt }}>
+  </label>
+</div>

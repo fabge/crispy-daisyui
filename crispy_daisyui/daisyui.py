@@ -32,6 +32,7 @@ class CSSContainer:
             "splitdatetime",
             "splithiddendatetime",
             "selectdate",
+            "toggle",
             # other items
             "error_border",
         ]

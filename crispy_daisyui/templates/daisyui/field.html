@@ -6,7 +6,7 @@
     {# Opening Div and Label first #}
 
     <{% if tag %}{{ tag }}{% else %}div{% endif %} id="div_{{ field.auto_id }}" class="{% if wrapper_class %}{{ wrapper_class }} {% endif %}{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}">
-    {% if field.label and form_show_labels %}
+    {% if field.label and form_show_labels and not field|is_toggle and not field|is_checkbox %}
         <label for="{{ field.id_for_label }}" class="{% if label_class %}{{ label_class }}{% endif %}">
             {{ field.label|safe }}{% if field.field.required %}<span class="asteriskField">*</span>{% endif %}
         </label>
@@ -15,17 +15,24 @@
     {# if field has a special template then use this #}
     {% if field|is_select %}
         <div class="{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
-
         {% include 'daisyui/layout/select.html' %}
+        </div>
     {% elif field|is_checkboxselectmultiple %}
         <div class="{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
-
         {% include 'daisyui/layout/checkboxselectmultiple.html' %}
+        </div>
+    {% elif field|is_toggle %}
+        <div class="{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
+        {% include 'daisyui/layout/toggle.html' %}
+        </div>
+    {% elif field|is_checkbox %}
+        <div class="{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
+        {% include 'daisyui/layout/checkbox.html' %}
+        </div>
     {% elif field|is_radioselect %}
         <div class="{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
-
         {% include 'daisyui/layout/radioselect.html' %}
-
+        </div>
     {% else %}
 
         {# otherwise use django rendering with additional classes added #}

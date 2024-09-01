@@ -1,4 +1,3 @@
-include LICENSE.txt
-include MANIFEST.in
-include README.rst
+include LICENSE
+include README.md
 recursive-include crispy_daisyui/templates *
