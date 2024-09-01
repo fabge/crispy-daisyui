@@ -19,15 +19,15 @@ and ``crispy_daisyui`` to your project's ``INSTALLED_APPS`` setting. Also set
 for your project:
 
 ```python
-INSTALLED_APPS = (
-    ...
-    "crispy_forms",
-    "crispy_daisyui",
-    ...
-)
+INSTALLED_APPS = [
+    # ...
+    'crispy_forms',
+    'crispy_daisyui',
+    # ...
+]
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "daisyui"
-CRISPY_TEMPLATE_PACK = "daisyui"
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'daisyui'
+CRISPY_TEMPLATE_PACK = 'daisyui'
 ```
 
 ## How to use
