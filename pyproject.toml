@@ -23,3 +23,7 @@ CI = "https://github.com/fabge/crispy-daisyui/actions"
 
 [tool.setuptools]
 packages = ["crispy_daisyui"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+crispy_daisyui = ["templates/**/*.html", "templatetags/*.py"]
