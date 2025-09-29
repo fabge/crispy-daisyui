@@ -1,4 +1,14 @@
 {% load crispy_forms_filters %}
 {% load l10n %}
 
-<option value="{{ value|stringformat:'s' }}" {{ field.field.widget.attrs|flatatt }}{% if field.value|stringformat:'s' == value|stringformat:'s' %} selected{% endif %}>{{ label }}</option>
+{% with current=field.value multi=field.field.widget.allow_multiple_selected %}
+  <option value="{{ value|stringformat:'s' }}"
+    {% if current %}
+      {% if multi %}
+        {% if value|stringformat:'s' in current %}selected{% endif %}
+      {% else %}
+        {% if current|stringformat:'s' == value|stringformat:'s' %}selected{% endif %}
+      {% endif %}
+    {% endif %}
+  >{{ label }}</option>
+{% endwith %}
