@@ -18,5 +18,8 @@ Changelog = "https://github.com/fabge/crispy-daisyui/releases"
 Issues = "https://github.com/fabge/crispy-daisyui/issues"
 CI = "https://github.com/fabge/crispy-daisyui/actions"
 
+[tool.setuptools.packages.find]
+include = ["crispy_daisyui"]
+
 [tool.uv]
 package = true
