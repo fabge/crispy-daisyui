@@ -5,9 +5,6 @@ description = "A DaisyUI package for Django Crispy Forms"
 readme = "README.md"
 authors = [{name = "Fabian Geiger"}]
 license = "Apache-2.0"
-classifiers = [
-    "License :: OSI Approved :: Apache Software License"
-]
 keywords = ["forms", "django", "crispy", "tailwind", "daisyui"]
 requires-python = ">=3.7"
 dependencies = [
