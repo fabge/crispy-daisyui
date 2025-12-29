@@ -2,12 +2,12 @@
 
 <div class="form-control">
   <label class="label cursor-pointer">
-    <span class="label-text">{{ field.label }}</span>
     <input type="checkbox" 
            class="checkbox {{ field.css_classes }}"
            name="{{ field.html_name }}"
            id="{{ field.auto_id }}"
            {% if field.value %}checked="checked"{% endif %}
            {{ field.field.widget.attrs|flatatt }}>
+    <span class="label-text">{{ field.label }}</span>
   </label>
 </div>
