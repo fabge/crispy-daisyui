@@ -26,7 +26,7 @@
         {% include 'daisyui/layout/toggle.html' %}
         </div>
     {% elif field|is_checkbox %}
-        <div class="{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
+        <div class="{% if field_class %}{{ field_class }}{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
         {% include 'daisyui/layout/checkbox.html' %}
         </div>
     {% elif field|is_radioselect %}
