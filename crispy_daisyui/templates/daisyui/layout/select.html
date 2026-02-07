@@ -2,7 +2,7 @@
 {% load l10n %}
 
 <select
-  class="select select-bordered w-full focus:ring focus:outline-none{% if field.errors %} select-error{% endif %}"
+  class="select w-full{% if field.errors %} select-error{% endif %}"
   name="{{ field.html_name }}"
   id="{{ field.id_for_label }}"
   {% if field.field.widget.allow_multiple_selected %}multiple{% endif %}

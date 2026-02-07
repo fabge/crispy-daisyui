@@ -83,7 +83,7 @@ def pairwise(iterable):
 
 
 class CrispyDaisyUiFieldNode(template.Node):
-    base_input = "input input-bordered w-full focus:ring focus:outline-none"
+    base_input = "input w-full"
 
     default_styles: ClassVar[dict] = {
         "text": base_input,
@@ -94,14 +94,14 @@ class CrispyDaisyUiFieldNode(template.Node):
         "password": base_input,
         "hidden": "",
         "multiplehidden": "",
-        "file": "file-input file-input-bordered w-full focus:ring focus:outline-none",
-        "clearablefile": "file-input file-input-bordered w-full focus:ring focus:outline-none",
-        "textarea": "textarea textarea-bordered w-full focus:ring focus:outline-none",
+        "file": "file-input w-full",
+        "clearablefile": "file-input w-full",
+        "textarea": "w-full",
         "date": base_input,
         "datetime": base_input,
         "time": base_input,
         "checkbox": "checkbox",
-        "select": "select select-bordered w-full",
+        "select": "select w-full",
         "nullbooleanselect": "",
         "selectmultiple": "",
         "checkboxselectmultiple": "checkbox",

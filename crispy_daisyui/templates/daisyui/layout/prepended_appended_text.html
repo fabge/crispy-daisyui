@@ -11,39 +11,19 @@
       </label>
     {% endif %}
 
-    <div class="{{ field_class }}">
-      <div class="flex">
+    <div class="join w-full">
+      {% if crispy_prepended_text %}
+        <span class="join-item flex items-center px-3 bg-base-200">{{ crispy_prepended_text|safe }}</span>
+      {% endif %}
 
-        {% if crispy_prepended_text and not crispy_appended_text %}
-          <span class="{% if field.errors %}border-red-500 border-r-0 {% else %}border-gray-300 {% endif %}border rounded-lg rounded-r-none px-3 bg-gray-200 text-gray-800 flex items-center">{{ crispy_prepended_text|safe }}</span>
-          {% if field.errors %}
-            {% daisyui_field field "class" "border border-red-500 rounded-lg rounded-l-none px-4 py-2 w-full focus:outline-none text-gray-700 border-l-0 leading-normal" %}
-          {% else %}
-            {% daisyui_field field "class" "border border-gray-300 rounded-lg rounded-l-none px-4 py-2 w-full focus:outline-none text-gray-700 border-l-0 leading-normal" %}
-          {% endif %}
+      {% daisyui_field field "class" "input join-item w-full" %}
 
-        {% elif crispy_appended_text and not crispy_prepended_text %}
-          {% if field.errors %}
-            {% daisyui_field field "class" "border border-red-500 rounded-lg rounded-r-none px-4 py-2 w-full focus:outline-none text-gray-700 border-r-0 leading-normal" %}
-          {% else %}
-            {% daisyui_field field "class" "border border-gray-300 rounded-lg rounded-r-none px-4 py-2 w-full focus:outline-none text-gray-700 border-r-0 leading-normal" %}
-          {% endif %}
-          <span class="{% if field.errors %}border-red-500 border-l-0 {% else %}border-gray-300 {% endif %}border rounded-lg rounded-l-none px-3 bg-gray-200 text-gray-800 flex items-center">{{ crispy_appended_text|safe }}</span>
-
-        {% else %}
-          <span class="{% if field.errors %}border-red-500 border-r-0 {% else %}border-gray-300 {% endif %}border rounded-lg rounded-r-none px-3 bg-gray-200 text-gray-800 flex items-center">{{ crispy_prepended_text|safe }}</span>
-          {% if field.errors %}
-            {% daisyui_field field "class" "border border-r-0 border-l-0 border-red-500 px-4 py-2 w-full focus:outline-none text-gray-700 border-r-0 leading-normal" %}
-          {% else %}
-            {% daisyui_field field "class" "border border-gray-300 px-4 py-2 w-full focus:outline-none text-gray-700 border-r-0 leading-normal" %}
-          {% endif %}
-          <span class="{% if field.errors %}border-red-500 border-l-0 {% else %}border-gray-300 {% endif %}border rounded-lg rounded-l-none px-3 bg-gray-200 text-gray-800 flex items-center">{{ crispy_appended_text|safe }}</span>
-
-        {% endif %}
-      </div>
+      {% if crispy_appended_text %}
+        <span class="join-item flex items-center px-3 bg-base-200">{{ crispy_appended_text|safe }}</span>
+      {% endif %}
     </div>
 
-      {% include 'daisyui/layout/field_errors.html' %}
-      {% include 'daisyui/layout/help_text.html' %}
+    {% include 'daisyui/layout/field_errors.html' %}
+    {% include 'daisyui/layout/help_text.html' %}
   </div>
 {% endif %}
