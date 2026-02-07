@@ -1,10 +1,12 @@
-{% load crispy_forms_filters %}
+{% load crispy_forms_filters daisyui_field %}
 {% load l10n %}
+{% checkbox_label_after as label_after %}
 
 <div class="form-control">
   <label class="label cursor-pointer" for="{{ field.id_for_label }}">
-    <span class="label-text">{{ field.label }}</span>
+    {% if not label_after %}<span class="label-text">{{ field.label }}</span>{% endif %}
     <input type="checkbox" class="toggle" name="{{ field.html_name }}" id="{{ field.id_for_label }}"
            {% if field.value %}checked="checked"{% endif %} {{ field.field.widget.attrs|flatatt }}>
+    {% if label_after %}<span class="label-text">{{ field.label }}</span>{% endif %}
   </label>
 </div>

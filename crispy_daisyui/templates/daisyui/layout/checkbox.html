@@ -1,13 +1,15 @@
-{% load crispy_forms_filters %}
+{% load crispy_forms_filters daisyui_field %}
+{% checkbox_label_after as label_after %}
 
 <div class="form-control h-6">
   <label class="label cursor-pointer">
-    <span class="label-text">{{ field.label }}</span>
-    <input type="checkbox" 
+    {% if not label_after %}<span class="label-text">{{ field.label }}</span>{% endif %}
+    <input type="checkbox"
            class="checkbox {{ field.css_classes }}"
            name="{{ field.html_name }}"
            id="{{ field.auto_id }}"
            {% if field.value %}checked="checked"{% endif %}
            {{ field.field.widget.attrs|flatatt }}>
+    {% if label_after %}<span class="label-text">{{ field.label }}</span>{% endif %}
   </label>
 </div>

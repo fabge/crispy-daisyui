@@ -3,12 +3,13 @@
 # to meet requirements of Tailwind
 
 import re
+from typing import ClassVar
 
+from crispy_forms.utils import TEMPLATE_PACK, get_template_pack
 from django import forms, template
 from django.conf import settings
 from django.template import Context, loader
 
-from crispy_forms.utils import TEMPLATE_PACK, get_template_pack
 from crispy_daisyui.daisyui import CSSContainer
 
 register = template.Library()
@@ -18,9 +19,11 @@ register = template.Library()
 def is_checkbox(field):
     return isinstance(field.field.widget, forms.CheckboxInput)
 
+
 @register.filter
 def is_toggle(field):
     return isinstance(field.field.widget, forms.CheckboxInput) and 'toggle' in field.field.widget.attrs.get('class', '')
+
 
 @register.filter
 def is_password(field):
@@ -80,12 +83,9 @@ def pairwise(iterable):
 
 
 class CrispyDaisyUiFieldNode(template.Node):
+    base_input = "input input-bordered w-full focus:ring focus:outline-none"
 
-    base_input = (
-        "input input-bordered w-full focus:ring focus:outline-none"
-    )
-
-    default_styles = {
+    default_styles: ClassVar[dict] = {
         "text": base_input,
         "number": base_input,
         "radioselect": "radio",
@@ -120,7 +120,7 @@ class CrispyDaisyUiFieldNode(template.Node):
         self.attrs = attrs
         self.html5_required = "html5_required"
 
-    def render(self, context):  # noqa: C901
+    def render(self, context):
         # Nodes are not threadsafe so we must store and look up our instance
         # variables in the current rendering context first
         if self not in context.render_context:
@@ -156,12 +156,12 @@ class CrispyDaisyUiFieldNode(template.Node):
             css_class = widget.attrs.get("class", "")
             if css_class:
                 if css_class.find(class_name) == -1:
-                    css_class += " %s" % class_name
+                    css_class += f" {class_name}"
             else:
                 css_class = class_name
 
             # Added additional code for Tailwind if class has not been passed in via the tag in the template
-            if template_pack == "daisyui" and '"class"' not in attr.keys():
+            if template_pack == "daisyui" and '"class"' not in attr:
                 css_container = context.get("css_container", self.default_container)
                 if css_container:
                     css = " " + css_container.get_input_class(field)
@@ -173,9 +173,8 @@ class CrispyDaisyUiFieldNode(template.Node):
             widget.attrs["class"] = css_class
 
             # HTML5 required attribute
-            if html5_required and field.field.required and "required" not in widget.attrs:
-                if field.field.widget.__class__.__name__ != "RadioSelect":
-                    widget.attrs["required"] = "required"
+            if html5_required and field.field.required and "required" not in widget.attrs and field.field.widget.__class__.__name__ != "RadioSelect":
+                widget.attrs["required"] = "required"
 
             # classes passed in via the template are added here
             for attribute_name, attribute in attr.items():
@@ -206,6 +205,11 @@ def daisyui_field(parser, token):
     return CrispyDaisyUiFieldNode(field, attrs)
 
 
+@register.simple_tag
+def checkbox_label_after():
+    return getattr(settings, "CRISPY_DAISYUI_CHECKBOX_LABEL_AFTER", True)
+
+
 @register.simple_tag()
 def crispy_addon(field, append="", prepend="", form_show_labels=True):
     """
@@ -220,7 +224,7 @@ def crispy_addon(field, append="", prepend="", form_show_labels=True):
     """
     if field:
         context = Context({"field": field, "form_show_errors": True, "form_show_labels": form_show_labels})
-        template = loader.get_template("%s/layout/prepended_appended_text.html" % get_template_pack())
+        template = loader.get_template(f"{get_template_pack()}/layout/prepended_appended_text.html")
         context["crispy_prepended_text"] = prepend
         context["crispy_appended_text"] = append
 
