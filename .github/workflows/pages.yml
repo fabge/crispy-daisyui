@@ -25,8 +25,6 @@ jobs:
       run: |
         pip install -e ..
         pip install -r requirements.txt
-        pip install setuptools
-        python -c "import pkg_resources; print('pkg_resources OK')"
     - name: Generate static site
       working-directory: showroom
       run: |

@@ -1,4 +1,2 @@
-django>=3.2
-django-bakery>=0.13.4
-django-crispy-forms>=1.11.2
-setuptools
+django>=4.2
+django-crispy-forms>=2.0

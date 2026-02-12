@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_daisyui',
-    'bakery',
+    'showroom',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
 }
 
 
@@ -131,4 +131,3 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "daisyui"
 CRISPY_TEMPLATE_PACK = "daisyui"
 
 BUILD_DIR = BASE_DIR / 'build'
-BAKERY_VIEWS = ['showroom.views.ShowroomView']
