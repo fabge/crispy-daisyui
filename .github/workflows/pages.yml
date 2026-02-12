@@ -23,9 +23,10 @@ jobs:
     - name: Install dependencies
       working-directory: showroom
       run: |
-        pip install setuptools
         pip install -e ..
         pip install -r requirements.txt
+        pip install setuptools
+        python -c "import pkg_resources; print('pkg_resources OK')"
     - name: Generate static site
       working-directory: showroom
       run: |
