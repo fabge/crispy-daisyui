@@ -7,7 +7,11 @@
   id="{{ field.id_for_label }}"
   {% if field.field.widget.allow_multiple_selected %}multiple{% endif %}
   {{ field.field.widget.attrs|flatatt }}>
-  {% for value, label in field.field.choices %}
-    {% include "daisyui/layout/select_option.html" with value=value label=label %}
+  {% for group, options, index in field|optgroups %}
+    {% if group %}<optgroup label="{{ group }}">{% endif %}
+    {% for option in options %}
+      {% include "daisyui/layout/select_option.html" with value=option.value label=option.label %}
+    {% endfor %}
+    {% if group %}</optgroup>{% endif %}
   {% endfor %}
 </select>
