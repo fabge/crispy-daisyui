@@ -25,6 +25,7 @@ jobs:
     - name: Install dependencies
       working-directory: showroom
       run: |
+        pip install setuptools
         pip install -e ..
         pip install -r requirements.txt
     - name: Generate static site
