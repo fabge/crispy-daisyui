@@ -21,17 +21,17 @@ jobs:
       with:
         python-version: "3.13"
     - name: Install dependencies
-      working-directory: showroom
+      working-directory: example
       run: |
         pip install -e ..
         pip install -r requirements.txt
     - name: Generate static site
-      working-directory: showroom
+      working-directory: example
       run: |
         python manage.py build
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: ./showroom/build
+        path: ./example/build
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
