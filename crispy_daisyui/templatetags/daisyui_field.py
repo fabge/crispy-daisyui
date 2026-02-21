@@ -69,6 +69,17 @@ def classes(field):
 
 
 @register.filter
+def widget_attrs(field):
+    """
+    Returns the complete widget attributes including dynamic ones like disabled.
+    Uses BoundField.build_widget_attrs to include attrs that Django adds at render time.
+    """
+    attrs = dict(field.field.widget.attrs)
+    attrs.update(field.build_widget_attrs({}, field.field.widget))
+    return attrs
+
+
+@register.filter
 def css_class(field):
     """
     Returns widgets class name in lowercase

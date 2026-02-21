@@ -30,3 +30,10 @@ class Form1(forms.Form):
     file = forms.FileField(label='File')
     image = forms.ImageField(label='Image')
     nullable_bool = forms.NullBooleanField(label='Nullable Bool')
+    disabled_select = forms.ChoiceField(
+        label='Disabled Select',
+        choices=[('1', 'One'), ('2', 'Two'), ('3', 'Three')],
+        initial='2',
+        disabled=True,
+    )
+    disabled_text = forms.CharField(label='Disabled Text', initial='Read only', disabled=True)

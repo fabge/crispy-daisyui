@@ -9,7 +9,7 @@
            name="{{ field.html_name }}"
            id="{{ field.auto_id }}"
            {% if field.value %}checked="checked"{% endif %}
-           {{ field.field.widget.attrs|flatatt }}>
+           {{ field|widget_attrs|flatatt }}>
     {% if label_after %}<span class="label-text">{{ field.label }}</span>{% endif %}
   </label>
 </div>
