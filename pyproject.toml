@@ -1,6 +1,6 @@
 [project]
 name = "crispy-daisyui"
-version = "0.12.1"
+version = "0.12.2"
 description = "A DaisyUI package for Django Crispy Forms"
 readme = "README.md"
 authors = [{name = "Fabian Geiger"}]
