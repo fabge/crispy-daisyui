@@ -1,14 +1,24 @@
 {% extends "base.html" %}
-{% load daisyui_filters %}
+{% load crispy_forms_tags daisyui_filters %}
 
 {% block content %}
 <h1 class="text-4xl font-bold mb-6">Showroom</h1>
 
-<div class="flex flex-wrap gap-4">
-    <form>
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button class="btn btn-primary w-full" type="submit">Submit</button>
-    </form>
+<div class="flex gap-8">
+    <div class="flex-1">
+        <h2 class="text-2xl font-bold mb-4">Default rendering</h2>
+        <form>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-primary w-full" type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="flex-1">
+        <h2 class="text-2xl font-bold mb-4">With css_class styling</h2>
+        <form>
+            {% csrf_token %}
+            {% crispy form2 %}
+        </form>
+    </div>
 </div>
 {% endblock %}

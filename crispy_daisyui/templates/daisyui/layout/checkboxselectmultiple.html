@@ -4,12 +4,12 @@
 {% for choice in field.field.choices %}
     <div class="form-control">
         <label class="label cursor-pointer">
-            <input type="checkbox" class="checkbox"
+            <input type="checkbox"
                 {% if choice.0 in field.value or choice.0|stringformat:"s" in field.value or choice.0|stringformat:"s" == field.value|default_if_none:""|stringformat:"s" %} checked="checked"{% endif %}
                 name="{{ field.html_name }}"
                 id="id_{{ field.html_name }}_{{ forloop.counter }}"
                 value="{{ choice.0|unlocalize }}"
-                {{ field|widget_attrs|flatatt }}>
+                {% widget_attrs_tag field "checkbox" %}>
             <span class="label-text">{{ choice.1|unlocalize }}</span>
         </label>
     </div>

@@ -5,8 +5,8 @@
 <div class="form-control">
   <label class="label cursor-pointer" for="{{ field.id_for_label }}">
     {% if not label_after %}<span class="label-text">{{ field.label }}</span>{% endif %}
-    <input type="checkbox" class="toggle" name="{{ field.html_name }}" id="{{ field.id_for_label }}"
-           {% if field.value %}checked="checked"{% endif %} {{ field|widget_attrs|flatatt }}>
+    <input type="checkbox" name="{{ field.html_name }}" id="{{ field.id_for_label }}"
+           {% if field.value %}checked="checked"{% endif %} {% widget_attrs_tag field "toggle" %}>
     {% if label_after %}<span class="label-text">{{ field.label }}</span>{% endif %}
   </label>
 </div>

@@ -5,11 +5,10 @@
   <label class="label cursor-pointer">
     {% if not label_after %}<span class="label-text">{{ field.label }}</span>{% endif %}
     <input type="checkbox"
-           class="checkbox {{ field.css_classes }}"
            name="{{ field.html_name }}"
            id="{{ field.auto_id }}"
            {% if field.value %}checked="checked"{% endif %}
-           {{ field|widget_attrs|flatatt }}>
+           {% widget_attrs_tag field "checkbox" %}>
     {% if label_after %}<span class="label-text">{{ field.label }}</span>{% endif %}
   </label>
 </div>

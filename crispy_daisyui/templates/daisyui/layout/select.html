@@ -2,11 +2,10 @@
 {% load l10n %}
 
 <select
-  class="select w-full{% if field.errors %} select-error{% endif %}"
   name="{{ field.html_name }}"
   id="{{ field.id_for_label }}"
   {% if field.field.widget.allow_multiple_selected %}multiple{% endif %}
-  {{ field|widget_attrs|flatatt }}>
+  {% widget_attrs_tag field "select w-full" "select-error" %}>
   {% for group, options, index in field|optgroups %}
     {% if group %}<optgroup label="{{ group }}">{% endif %}
     {% for option in options %}

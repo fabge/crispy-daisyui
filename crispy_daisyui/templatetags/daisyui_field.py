@@ -1,7 +1,3 @@
-# This file is currently copied directly from django-crispy-forms
-# Changes to core form are highlighted. These are to add additional input classes
-# to meet requirements of Tailwind
-
 import re
 from typing import ClassVar
 
@@ -26,11 +22,6 @@ def is_toggle(field):
 
 
 @register.filter
-def is_password(field):
-    return isinstance(field.field.widget, forms.PasswordInput)
-
-
-@register.filter
 def is_radioselect(field):
     return isinstance(field.field.widget, forms.RadioSelect)
 
@@ -45,46 +36,27 @@ def is_checkboxselectmultiple(field):
     return isinstance(field.field.widget, forms.CheckboxSelectMultiple)
 
 
-@register.filter
-def is_file(field):
-    return isinstance(field.field.widget, forms.FileInput)
-
-
-@register.filter
-def is_clearable_file(field):
-    return isinstance(field.field.widget, forms.ClearableFileInput)
-
-
-@register.filter
-def is_multivalue(field):
-    return isinstance(field.field.widget, forms.MultiWidget)
-
-
-@register.filter
-def classes(field):
+@register.simple_tag
+def widget_attrs_tag(field, base_class="", error_class=""):
     """
-    Returns CSS classes of a field
-    """
-    return field.widget.attrs.get("class", None)
+    Returns flattened HTML attributes for a widget, as a safe string.
 
+    Merges the template's base CSS class with the widget's own class (deduplicated),
+    adds error classes when the field has errors, and includes dynamic attributes
+    like disabled from BoundField.build_widget_attrs.
 
-@register.filter
-def widget_attrs(field):
+    Usage: {% widget_attrs_tag field "select w-full" "select-error" %}
     """
-    Returns the complete widget attributes including dynamic ones like disabled.
-    Uses BoundField.build_widget_attrs to include attrs that Django adds at render time.
-    """
+    from django.forms.utils import flatatt
+
     attrs = dict(field.field.widget.attrs)
     attrs.update(field.build_widget_attrs({}, field.field.widget))
-    return attrs
-
-
-@register.filter
-def css_class(field):
-    """
-    Returns widgets class name in lowercase
-    """
-    return field.field.widget.__class__.__name__.lower()
+    classes = base_class.split() + attrs.get("class", "").split()
+    if error_class and field.errors:
+        classes += error_class.split()
+    if classes:
+        attrs["class"] = " ".join(dict.fromkeys(classes))
+    return flatatt(attrs)
 
 
 def pairwise(iterable):

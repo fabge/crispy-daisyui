@@ -1,3 +1,5 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Field, Layout, Submit
 from django import forms
 
 
@@ -24,9 +26,9 @@ class Form1(forms.Form):
     )
     radio = forms.ChoiceField(choices=[('1', 'One'), ('2', 'Two'), ('3', 'Three')], widget=forms.RadioSelect)
     textarea = forms.CharField(label='Textarea', widget=forms.Textarea)
-    date = forms.DateField(label='Date')
-    datetime = forms.DateTimeField(label='Datetime')
-    time = forms.TimeField(label='Time')
+    date = forms.DateField(label='Date', widget=forms.DateInput(attrs={'type': 'date'}))
+    datetime = forms.DateTimeField(label='Datetime', widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
+    time = forms.TimeField(label='Time', widget=forms.TimeInput(attrs={'type': 'time'}))
     file = forms.FileField(label='File')
     image = forms.ImageField(label='Image')
     nullable_bool = forms.NullBooleanField(label='Nullable Bool')
@@ -37,3 +39,35 @@ class Form1(forms.Form):
         disabled=True,
     )
     disabled_text = forms.CharField(label='Disabled Text', initial='Read only', disabled=True)
+
+
+class Form2(forms.Form):
+    """Form using Field layout with css_class to demonstrate custom styling."""
+
+    select = forms.ChoiceField(
+        label='Styled Select',
+        choices=[('1', 'One'), ('2', 'Two'), ('3', 'Three')],
+    )
+    checkbox = forms.BooleanField(label='Styled Checkbox', required=False)
+    toggle = forms.BooleanField(
+        label='Styled Toggle',
+        required=False,
+        widget=forms.CheckboxInput(attrs={'class': 'toggle'}),
+    )
+    radio = forms.ChoiceField(
+        label='Styled Radio',
+        choices=[('1', 'One'), ('2', 'Two'), ('3', 'Three')],
+        widget=forms.RadioSelect,
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.layout = Layout(
+            Field('select', css_class='select-primary'),
+            Field('checkbox', css_class='checkbox-primary'),
+            Field('toggle', css_class='toggle-primary'),
+            Field('radio', css_class='radio-primary'),
+            Submit('submit', 'Submit', css_class='w-full'),
+        )
