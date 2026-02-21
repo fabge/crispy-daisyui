@@ -10,7 +10,7 @@
   {% for group, options, index in field|optgroups %}
     {% if group %}<optgroup label="{{ group }}">{% endif %}
     {% for option in options %}
-      {% include "daisyui/layout/select_option.html" with value=option.value label=option.label %}
+      {% include "daisyui/layout/select_option.html" with value=option.value label=option.label selected=option.attrs.selected %}
     {% endfor %}
     {% if group %}</optgroup>{% endif %}
   {% endfor %}
